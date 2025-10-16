@@ -21,7 +21,7 @@ model Aluno {
 model Contato {
   id_contato  Int     @id @default(autoincrement())
   telefone  String? @db.VarChar(200)
-  email   String? @db.VarChar(200)
+  email   String @db.VarChar(200)
   id_fk_aluno Int
   Aluno       Aluno   @relation(fields: [id_fk_aluno], references: [id_aluno], onDelete: NoAction, onUpdate: NoAction, map: "contato_ibfk_1")
 
