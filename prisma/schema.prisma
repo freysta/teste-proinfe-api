@@ -14,8 +14,8 @@ model Aluno {
   nome            String @db.VarChar(100)
   sexo            Sexo    
   cpf             String?   @db.VarChar(100)
-  nacionalidade Nacionalidade
-  Contato         Contato[]
+  nacionalidade   Nacionalidade
+  contato         Contato[]
 }
 
 model Contato {

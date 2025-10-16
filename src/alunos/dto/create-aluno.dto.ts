@@ -8,6 +8,7 @@ import {
   IsString,
 } from 'class-validator';
 import { ContatoDto } from './contato-aluno.dto';
+import { Nacionalidade, Sexo } from 'generated/prisma';
 
 export class CreateAlunoDto {
   @IsNotEmpty()
@@ -21,10 +22,12 @@ export class CreateAlunoDto {
   @IsNotEmpty()
   @IsString()
   cpf: string;
-  @IsEnum(['Masculino', 'Feminino'])
-  sexo: string;
+
   @IsEnum(['Brasileira', 'Brasileira-naturalizada', 'Estrangeira'])
-  nacionalidaded: string;
+  nacionalidade: Nacionalidade;
+
+  @IsEnum(['Masculino', 'Feminino'])
+  sexo: Sexo;
 
   @IsNotEmpty()
   @IsArray()
