@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Aluno {
+  id_aluno        Int       @id @default(autoincrement())
+  data_nascimento DateTime  @db.Date
+  sexo            String    @db.VarChar(100)
+  cpf             String?   @db.VarChar(100)
+  Contato         Contato[]
+}
+
+model Contato {
+  id_contato  Int     @id @default(autoincrement())
+  tipo        String? @db.VarChar(150)
+  contato     String? @db.VarChar(200)
+  id_fk_aluno Int
+  Aluno       Aluno   @relation(fields: [id_fk_aluno], references: [id_aluno], onDelete: NoAction, onUpdate: NoAction, map: "contato_ibfk_1")
+
+  @@index([id_fk_aluno], map: "id_fk_aluno")
+}
