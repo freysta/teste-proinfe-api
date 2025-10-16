@@ -11,6 +11,7 @@ datasource db {
 model Aluno {
   id_aluno        Int       @id @default(autoincrement())
   data_nascimento DateTime  @db.Date
+  nome            String @db.VarChar(100)
   sexo            String    @db.VarChar(100)
   cpf             String?   @db.VarChar(100)
   Contato         Contato[]
