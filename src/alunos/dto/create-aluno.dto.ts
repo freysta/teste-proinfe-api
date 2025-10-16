@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { IsDate, IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsArray,
+  IsDateString,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+} from 'class-validator';
+import { ContatoDto } from './contato-aluno.dto';
 
 export class CreateAlunoDto {
   @IsNotEmpty()
@@ -13,8 +21,13 @@ export class CreateAlunoDto {
   @IsNotEmpty()
   @IsString()
   cpf: string;
+  @IsEnum(['Masculino', 'Feminino'])
+  sexo: string;
+  @IsEnum(['Brasileira', 'Brasileira-naturalizada', 'Estrangeira'])
+  nacionalidaded: string;
 
   @IsNotEmpty()
-  @IsString()
-  sexo: string;
+  @IsArray()
+  @Type(() => ContatoDto)
+  contatos: ContatoDto[];
 }

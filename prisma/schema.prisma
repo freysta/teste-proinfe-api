@@ -12,17 +12,27 @@ model Aluno {
   id_aluno        Int       @id @default(autoincrement())
   data_nascimento DateTime  @db.Date
   nome            String @db.VarChar(100)
-  sexo            String    @db.VarChar(100)
+  sexo            Sexo    
   cpf             String?   @db.VarChar(100)
+  nacionalidade Nacionalidade
   Contato         Contato[]
 }
 
 model Contato {
   id_contato  Int     @id @default(autoincrement())
-  tipo        String? @db.VarChar(150)
-  contato     String? @db.VarChar(200)
+  telefone  String? @db.VarChar(200)
+  email   String? @db.VarChar(200)
   id_fk_aluno Int
   Aluno       Aluno   @relation(fields: [id_fk_aluno], references: [id_aluno], onDelete: NoAction, onUpdate: NoAction, map: "contato_ibfk_1")
 
   @@index([id_fk_aluno], map: "id_fk_aluno")
+}
+enum Sexo {
+  Masculino
+  Feminino
+}
+enum Nacionalidade {
+  Brasileira 
+  Brasileira_Naturalizada
+  Estrangeira
 }
